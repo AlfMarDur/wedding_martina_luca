@@ -2,10 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 👈 Esto adapta el zoom en móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi página sencilla</title>
   <style>
-    /* 🎨 ESTILOS GENERALES */
     body {
       background-color: #f2f2f2;
       text-align: center;
@@ -17,8 +16,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh; /* Centrado vertical en pantallas grandes */
+      min-height: 100vh;
       box-sizing: border-box;
+
+      /* ✨ Efecto fade */
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    body.loaded {
+      opacity: 1;
     }
 
     h1 {
@@ -27,8 +34,8 @@
     }
 
     img {
-      max-width: 90%;          /* 👈 Se adapta al ancho del móvil */
-      height: auto;            /* Mantiene la proporción */
+      max-width: 90%;
+      height: auto;
       cursor: pointer;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -36,7 +43,7 @@
     }
 
     img:hover {
-      transform: scale(1.03);  /* Pequeño zoom en hover (si hay ratón) */
+      transform: scale(1.03);
     }
 
     p {
@@ -46,12 +53,10 @@
       line-height: 1.4;
     }
 
-    /* 📱 Ajustes específicos para pantallas pequeñas */
     @media (max-width: 600px) {
       h1 {
         font-size: 1.2rem;
       }
-
       p {
         font-size: 0.95rem;
       }
@@ -60,9 +65,25 @@
 </head>
 <body>
   <h1>Haz clic en la imagen 👇</h1>
-  <a href="segunda.html">
+  <a href="segunda.html" id="enlace">
     <img src="M&L_1.jpg" alt="Primera imagen">
   </a>
   <p>Esta es la primera imagen. Al hacer clic te llevará a otra.</p>
+
+  <script>
+    // ✨ Efecto al cargar
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+
+    // ✨ Efecto al salir (fade out)
+    document.getElementById("enlace").addEventListener("click", function(e) {
+      e.preventDefault(); // Evita el cambio inmediato
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location = this.href; // Carga la siguiente página tras el efecto
+      }, 400); // Duración del fundido (0.4s)
+    });
+  </script>
 </body>
 </html>
