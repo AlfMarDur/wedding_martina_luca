@@ -19,7 +19,7 @@
       min-height: 100vh;
       box-sizing: border-box;
 
-      /* ✨ Efecto de desvanecimiento */
+      /* Efecto de desvanecimiento */
       opacity: 0;
       transition: opacity 0.5s ease;
     }
@@ -34,9 +34,10 @@
     }
 
     img {
-      width: min(400px, 90vw); /* ✅ Mismo tamaño en todas las pantallas */
-      aspect-ratio: 4 / 3;    /* Mantiene proporción uniforme */
-      object-fit: cover;      /* Ajusta sin deformar */
+      max-width: 90vw;    /* Ajusta al ancho de la pantalla */
+      max-height: 60vh;   /* Limita altura para que se vea completa */
+      width: auto;
+      height: auto;
       cursor: pointer;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -72,12 +73,10 @@
   <p>Esta es la primera imagen. Al hacer clic te llevará a otra.</p>
 
   <script>
-    // ✨ Efecto al cargar
     window.addEventListener("load", () => {
       document.body.classList.add("loaded");
     });
 
-    // ✨ Efecto al salir (fade out)
     document.getElementById("enlace").addEventListener("click", function(e) {
       e.preventDefault();
       document.body.style.opacity = 0;
