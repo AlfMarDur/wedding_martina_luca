@@ -19,7 +19,7 @@
       min-height: 100vh;
       box-sizing: border-box;
 
-      /* ✨ Efecto fade */
+      /* ✨ Efecto de desvanecimiento */
       opacity: 0;
       transition: opacity 0.5s ease;
     }
@@ -34,8 +34,9 @@
     }
 
     img {
-      max-width: 90%;
-      height: auto;
+      width: min(400px, 90vw); /* ✅ Mismo tamaño en todas las pantallas */
+      aspect-ratio: 4 / 3;    /* Mantiene proporción uniforme */
+      object-fit: cover;      /* Ajusta sin deformar */
       cursor: pointer;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -78,11 +79,11 @@
 
     // ✨ Efecto al salir (fade out)
     document.getElementById("enlace").addEventListener("click", function(e) {
-      e.preventDefault(); // Evita el cambio inmediato
+      e.preventDefault();
       document.body.style.opacity = 0;
       setTimeout(() => {
-        window.location = this.href; // Carga la siguiente página tras el efecto
-      }, 400); // Duración del fundido (0.4s)
+        window.location = this.href;
+      }, 400);
     });
   </script>
 </body>
